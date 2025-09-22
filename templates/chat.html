@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="chat-container">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Контакты</h3>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Выйти</a>
+        </div>
+        <ul class="contact-list">
+            {% for user in users %}
+            <li class="contact" data-username="{{ user.username }}">
+                <span class="contact-name">{{ user.username }}</span>
+                <span class="status-indicator {{ 'online' if user.is_online else 'offline' }}" id="status-{{ user.username }}"></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="chat-window">
+        <div class="chat-header">
+            <h3 id="chat-with-username">Выберите контакт для начала чата</h3>
+            <small id="chat-with-status"></small>
+        </div>
+        <div class="messages-area" id="messages-area">
+            <!-- Сообщения будут здесь -->
+        </div>
+        <div class="input-area">
+            <div class="message-input-wrapper">
+                <textarea id="message-input" placeholder="Введите сообщение..." rows="3"></textarea>
+                <button id="send-button">⬆️</button>
+            </div>
+            <div class="crypto-wrapper">
+                <input type="password" id="crypto-key" placeholder="Пароль чата">
+                <button id="activate-key-button">🔑</button>
+            </div>
+            <div class="actions-wrapper">
+                <button id="delete-last-button">🗑️</button>
+                <button id="delete-all-button">❌</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const currentUsername = "{{ username }}";
+</script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
