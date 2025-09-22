@@ -1,0 +1,19 @@
+[interpreter]
+[interpreter.python3]
+[interpreter.python3.pip]
+[interpreter.python3.pip.lock]
+[interpreter.python3.pip.lock.backend]
+[interpreter.python3.pip.lock.backend.poetry]
+[interpreter.python3.pip.lock.backend.poetry.source]
+type = "poetry"
+
+[run]
+command = "python main.py"
+
+[packager]
+language = "python3"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = true
